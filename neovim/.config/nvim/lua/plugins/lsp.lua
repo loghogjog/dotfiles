@@ -20,14 +20,14 @@ return {
             vim.keymap.set("n", keys, func, { buffer = buf })
           end
 
-          map("gr", vim.lsp.buf.references)
-          map("gi", vim.lsp.buf.implementation)
-          map("<leader>ds", require("telescope.builtin").lsp_document_symbols)
-          map("<leader>ws", require("telescope.builtin").lsp_workspace_symbols)
-          map("gd", vim.lsp.buf.definition)
-          map("K", vim.lsp.buf.hover)
-          map("<leader>rn", vim.lsp.buf.rename)
-          map("<leader>ca", vim.lsp.buf.code_action)
+          map("gr", vim.lsp.buf.references, { desc = "Show every occurance of Variable" })
+          map("gi", vim.lsp.buf.implementation, { desc = "Jump to Implementation" })
+          map("<leader>ds", require("telescope.builtin").lsp_document_symbols, { desc = "Show all Symbols in Current File" })
+          map("<leader>ws", require("telescope.builtin").lsp_workspace_symbols, { desc = "Show all Symbols across Project Dir" })
+          map("gd", vim.lsp.buf.definition, { desc = "Jump to Symbol" })
+          map("K", vim.lsp.buf.hover, { desc = "Open Documentation" })
+          map("<leader>rn", vim.lsp.buf.rename, { desc = "Smart Rename" })
+          map("<leader>ca", vim.lsp.buf.code_action, { desc = "Show Quick Fixes" })
         end
       })
       local capabilities = require("cmp_nvim_lsp").default_capabilities()

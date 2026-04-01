@@ -1,3 +1,4 @@
+-- TODO: UPDATE TROUBLE TOGGLE CONFIG
 return {
   {
     "folke/trouble.nvim",

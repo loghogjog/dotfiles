@@ -5,7 +5,7 @@ return {
     config = function()
       require("nvim-tree").setup()
 
-      vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
+      vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree [File Explorer]" })
     end
   }
 }

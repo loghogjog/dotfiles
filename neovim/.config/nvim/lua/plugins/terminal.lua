@@ -20,7 +20,7 @@ return {
         term:toggle()
       end
 
-      vim.keymap.set("n", "<leader>tt", _TOGGLE_TERM)
+      vim.keymap.set("n", "<leader>tt", _TOGGLE_TERM, { desc= "Toggle Terminal" })
     end
   }
 }

@@ -21,8 +21,8 @@ return {
     -- Keymaps
     local map = vim.keymap.set
 
-    map("n", "<leader>ff", builtin.find_files)
-    map("n", "<leader>fg", telescope.extensions.live_grep_args.live_grep_args)
-    map("n", "<leader>fb", builtin.buffers)
+    map("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
+    map("n", "<leader>fg", telescope.extensions.live_grep_args.live_grep_args, { desc = "Live Grep" })
+    map("n", "<leader>fb", builtin.buffers, { desc = "File Buffers" })
   end
 }
