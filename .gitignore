@@ -1,0 +1,12 @@
+# nvim junk
+nvim/.cache/
+nvim/lazy/
+nvim/undo/
+
+# envs
+.env/
+venv/
+mynvimenv/
+
+# OS
+.DS_Store
