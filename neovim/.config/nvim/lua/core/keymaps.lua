@@ -22,7 +22,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting r
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
 
-vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]], { desc = "Delete without yanking" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 vim.keymap.set("v", "p", '"_dP')
 
 -- Better Escape
@@ -43,3 +43,27 @@ end, { expr = true })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })
 
+-- Python Run
+local function run_python()
+  vim.cmd("w")
+  local file = vim.fn.expand("%")
+  -- 'botright' ensures terminal opens at the bottom 
+  vim.cmd("botright split | terminal python3 " .. file)
+end
+
+vim.keymap.set("n", "<leader>rp", run_python, { desc = "Run Python file" })
+
+-- Debugging
+vim.keymap.set("n", "<F5>", function() require("dap").continue() end, { desc = "Continue" })
+vim.keymap.set("n", "<F10>", function() require("dap").step_over() end, { desc = "Step Over" })
+vim.keymap.set("n", "<F11>", function() require("dap").step_into() end, { desc = "Step Into" })
+vim.keymap.set("n", "<F12>", function() require("dap").step_out() end, { desc = "Step Out" })
+
+vim.keymap.set("n", "<leader>b", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>B", function()
+  require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, { desc = "Set Breakpoint with Condition" })
+
+-- Open REPL for debugging (Lowkey can remove alr since DAP UI is added)
+vim.keymap.set("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "Open Debug REPL" })
+vim.keymap.set("n", "<leader>dl", function() require("dap").run_last() end, { desc = "Run Last Debug Configuration" })
