@@ -32,12 +32,15 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Fast escape" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
+-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
+vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>Q", ":q!<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
 
 -- Rename
 vim.keymap.set("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true })
+end, { expr = true, desc = "Rename All Instances" })
 
 -- Better Quit Button
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
@@ -67,3 +70,17 @@ end, { desc = "Set Breakpoint with Condition" })
 -- Open REPL for debugging (Lowkey can remove alr since DAP UI is added)
 vim.keymap.set("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "Open Debug REPL" })
 vim.keymap.set("n", "<leader>dl", function() require("dap").run_last() end, { desc = "Run Last Debug Configuration" })
+
+-- Split Pane, Navigation g
+vim.keymap.set("n", "<leader>|", "<C-w>v", { desc = "Vertical split" })
+vim.keymap.set("n", "<leader>-", "<C-w>s", { desc = "Horizontal split" })
+-- Nav
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+
+vim.keymap.set("n", "<C-Left>", "<C-w>h")
+vim.keymap.set("n", "<C-Right>", "<C-w>l")
+vim.keymap.set("n", "<C-Down>", "<C-w>j")
+vim.keymap.set("n", "<C-Up>", "<C-w>k")
