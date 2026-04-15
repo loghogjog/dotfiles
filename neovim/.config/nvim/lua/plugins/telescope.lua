@@ -13,10 +13,16 @@ return {
         layout_config = {
           horizontal = { preview_width = 0.6 },
         },
-      }
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+      },
     })
 
     telescope.load_extension("live_grep_args")
+    telescope.load_extension("yank_history")
 
     -- Keymaps
     local map = vim.keymap.set

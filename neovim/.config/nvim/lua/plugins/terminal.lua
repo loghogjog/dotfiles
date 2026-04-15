@@ -9,6 +9,7 @@ return {
         -- float_opts = {
         --   border = "rounded",
         -- },
+
       })
 
       local Terminal = require("toggleterm.terminal").Terminal
@@ -21,15 +22,19 @@ return {
 
       local opts = {buffer = 0}
 
-      vim.keymap.set("n", "<leader>tt", _TOGGLE_TERM, { desc= "Toggle Terminal" })
-      -- vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<Esc>", [[<C-\><C-n>]], {noremap=true, silent=true})
-      vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-      vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
-      vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-      vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-      vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-      vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-      vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+      vim.keymap.set("n", "<leader>t1", "<cmd>ToggleTerm 1<CR>", { desc = "Open Terminal 1" })
+      vim.keymap.set("n", "<leader>t2", "<cmd>ToggleTerm 2<CR>", { desc = "Open Terminal 2" })
+      vim.keymap.set("n", "<leader>t3", "<cmd>ToggleTerm 3<CR>", { desc = "Open Terminal 3" })
+      vim.keymap.set("n", "<leader>t4", "<cmd>ToggleTerm 4<CR>", { desc = "Open Terminal 4" })
+      vim.keymap.set("n", "<leader>t5", "<cmd>ToggleTerm 5<CR>", { desc = "Open Terminal 5" })
+
+      vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>hi]])
+      -- vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]])
+      -- vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]])
+      vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>li]])
+
+      vim.keymap.set('t', '<ESC>', [[<C-\><C-n>]])
+
     end
   }
 }

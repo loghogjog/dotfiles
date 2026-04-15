@@ -17,10 +17,10 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Row Down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Row Up" })
 
 -- Copy Paste
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting register" })
-
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
+-- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting register" })
+--
+-- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+-- vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 vim.keymap.set("v", "p", '"_dP')
@@ -61,6 +61,7 @@ vim.keymap.set("n", "<F5>", function() require("dap").continue() end, { desc = "
 vim.keymap.set("n", "<F10>", function() require("dap").step_over() end, { desc = "Step Over" })
 vim.keymap.set("n", "<F11>", function() require("dap").step_into() end, { desc = "Step Into" })
 vim.keymap.set("n", "<F12>", function() require("dap").step_out() end, { desc = "Step Out" })
+vim.keymap.set("n", "<F3>", function() require("dap").terminate() require("dapui").close() end, { desc = "Stop debugging" })
 
 vim.keymap.set("n", "<leader>b", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
 vim.keymap.set("n", "<leader>B", function()
@@ -72,8 +73,8 @@ vim.keymap.set("n", "<leader>dr", function() require("dap").repl.open() end, { d
 vim.keymap.set("n", "<leader>dl", function() require("dap").run_last() end, { desc = "Run Last Debug Configuration" })
 
 -- Split Pane, Navigation g
-vim.keymap.set("n", "<leader>|", "<C-w>v", { desc = "Vertical split" })
-vim.keymap.set("n", "<leader>-", "<C-w>s", { desc = "Horizontal split" })
+vim.keymap.set("n", "<leader>|", ":vsplit | wincmd l<CR>", { desc = "Vertical split" })
+vim.keymap.set("n", "<leader>-", ":split | wincmd j<CR>", { desc = "Horizontal split" }) -- add "| wincmd j to auto move to lower window"
 -- Nav
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
@@ -84,3 +85,11 @@ vim.keymap.set("n", "<C-Left>", "<C-w>h")
 vim.keymap.set("n", "<C-Right>", "<C-w>l")
 vim.keymap.set("n", "<C-Down>", "<C-w>j")
 vim.keymap.set("n", "<C-Up>", "<C-w>k")
+-- Reset Window Split Size
+vim.keymap.set("n", "<A-r>", "<C-w>=")
+
+-- Formatting
+vim.keymap.set("n", "<leader>F", function()
+  require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format buffer" })
+

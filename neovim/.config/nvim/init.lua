@@ -11,15 +11,27 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- FIX: oil.nvim creates C dir in curr dir
 vim.api.nvim_create_autocmd("BufWritePre", {
-  callback = function(event)
-    local file = event.match
-    local dir = vim.fn.fnamemodify(file, ":p:h")
-    if vim.fn.isdirectory(dir) == 0 then
-      vim.fn.mkdir(dir, "p")
-    end
-  end,
+    pattern = "*",
+    desc = "Create parent directories automatically on write",
+    callback = function(args)
+        local bufname = vim.api.nvim_buf_get_name(args.buf)
+        if bufname:match("^oil://") then
+            return
+        end
+        local dir = vim.fn.expand("<afile>:p:h")
+        if vim.fn.isdirectory(dir) == 0 then
+            vim.fn.mkdir(dir, "p")
+        end
+    end,
 })
+
+-- -- Auto Focus on new Window
+-- vim.api.nvim_create_autocmd("WinNew", {
+--   callback = function()
+--     vim.cmd("")
+-- })
 
 -- Formatter Config
 require("conform").setup({
