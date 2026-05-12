@@ -39,3 +39,7 @@ require("conform").setup({
     python = { "ruff_format", "black" },
   },
 })
+
+-- Autofocus on new terminal
+vim.o.splitbelow = true
+vim.o.splitright = true

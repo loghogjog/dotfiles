@@ -92,4 +92,3 @@ vim.keymap.set("n", "<A-r>", "<C-w>=")
 vim.keymap.set("n", "<leader>F", function()
   require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format buffer" })
-
