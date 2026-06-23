@@ -27,12 +27,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
--- -- Auto Focus on new Window
--- vim.api.nvim_create_autocmd("WinNew", {
---   callback = function()
---     vim.cmd("")
--- })
-
 -- Formatter Config
 require("conform").setup({
   formatters_by_ft = {
@@ -43,3 +37,6 @@ require("conform").setup({
 -- Autofocus on new terminal
 vim.o.splitbelow = true
 vim.o.splitright = true
+
+-- LSP Goto definition 
+vim.opt.hidden = true

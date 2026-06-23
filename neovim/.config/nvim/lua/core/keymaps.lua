@@ -75,6 +75,7 @@ vim.keymap.set("n", "<leader>dl", function() require("dap").run_last() end, { de
 -- Split Pane, Navigation g
 vim.keymap.set("n", "<leader>|", ":vsplit | wincmd l<CR>", { desc = "Vertical split" })
 vim.keymap.set("n", "<leader>-", ":split | wincmd j<CR>", { desc = "Horizontal split" }) -- add "| wincmd j to auto move to lower window"
+
 -- Nav
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
@@ -92,3 +93,6 @@ vim.keymap.set("n", "<A-r>", "<C-w>=")
 vim.keymap.set("n", "<leader>F", function()
   require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format buffer" })
+
+-- Mpv.nvim
+vim.keymap.set("n", "<leader>mp", "<cmd>MpvToggle<cr>", { desc = "Toggle MPV Player" })

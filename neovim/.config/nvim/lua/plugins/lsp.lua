@@ -20,11 +20,11 @@ return {
             vim.keymap.set("n", keys, func, opt)
           end
 
-          map("gr", vim.lsp.buf.references, { desc = "Show every occurance of Variable" })
-          map("gi", vim.lsp.buf.implementation, { desc = "Jump to Implementation" })
+          map("gr", require("telescope.builtin").lsp_references, { desc = "Show every occurance of Variable" })
+          map("gi", require("telescope.builtin").lsp_implementations, { desc = "Jump to Implementation" })
           map("<leader>ds", require("telescope.builtin").lsp_document_symbols, { desc = "Show all Symbols in Current File" })
           map("<leader>ws", require("telescope.builtin").lsp_workspace_symbols, { desc = "Show all Symbols across Project Dir" })
-          map("gd", vim.lsp.buf.definition, { desc = "Jump to Symbol/Function" })
+          map("gd", require("telescope.builtin").lsp_definitions, { desc = "Jump to Symbol/Function" })
           map("<C-o>", "<C-o>", { desc = "Back to Function" })
           map("K", vim.lsp.buf.hover, { desc = "Open Documentation" })
           map("<leader>ca", vim.lsp.buf.code_action, { desc = "Show Quick Fixes/Code Actions" })
