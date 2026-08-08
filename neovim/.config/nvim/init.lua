@@ -3,7 +3,7 @@ require("core.keymaps")
 require("core.lazy")
 require("core.dap")
 
-vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/mynvimenv/bin/python3")
+vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/.venv/bin/python3")
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()

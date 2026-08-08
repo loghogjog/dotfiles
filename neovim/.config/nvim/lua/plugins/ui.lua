@@ -32,19 +32,7 @@ return {
           },
         },
 
-        lualine_x = {
-          {
-            function()
-              local title = vim.g.mpv_title or ""
-              if title == "" then
-                return "---No Music---"
-              end
-              return " " .. title
-            end,
-          },
-          "g:mpv_visualizer",
-        },
-
+        lualine_x = { "yt-player" },
         lualine_y = {},
         lualine_z = {},
       }
