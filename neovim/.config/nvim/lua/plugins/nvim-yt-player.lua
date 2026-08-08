@@ -8,12 +8,17 @@ return {
       })
 
     -- Keymaps
-    vim.keymap.set("n", "<leader>ym", "<cmd>YT mini<cr>", { desc = "Open YT Mini Player" })
-    vim.keymap.set("n", "<leader>yp", "<cmd>YT playlists<cr>", { desc = "Show YT Playlist" })
-    vim.keymap.set("n", "<leader>yh", "<cmd>YT history<cr>", { desc = "Show YT History" })
-    vim.keymap.set("n", "<leader>yr", "<cmd>YT resume<cr>", { desc = "YT Resume Last Playback" })
-    vim.keymap.set("n", "<leader>yq", "<cmd>YT queue_edit<cr>", { desc = "Edit YT Queue" })
-    vim.keymap.set("n", "<leader>ys", "<cmd>YT search<cr>", { desc = "YT Search" })
+    vim.keymap.set("n", "<leader>mm", "<cmd>YT mini<cr>", { desc = "Open Music Mini Player" })
+    vim.keymap.set("n", "<leader>mp", "<cmd>YT playlists<cr>", { desc = "Show Music Playlist" })
+    vim.keymap.set("n", "<leader>mh", "<cmd>YT history<cr>", { desc = "Show Music History" })
+    vim.keymap.set("n", "<leader>mr", "<cmd>YT resume<cr>", { desc = "Resume Last Music Playback" })
+    vim.keymap.set("n", "<leader>mq", "<cmd>YT queue_edit<cr>", { desc = "Edit Music Queue" })
+    vim.keymap.set("n", "<leader>ms", "<cmd>YT search<cr>", { desc = "Music Search" })
+    -- Other Commands
+    -- :YT queue_playlists <url> - play entire playlist
+    -- :YT player - open player in sidebar
+    -- :YT history_clear - Clear local play history
+    -- :YT queue <url> - append url to active queue
 
     end,
   }
