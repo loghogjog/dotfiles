@@ -16,7 +16,14 @@ opt.clipboard = "unnamedplus"
 opt.scrolloff = 8
 opt.sidescrolloff = 8
 
-vim.opt.undofile = true
+opt.undofile = true
 
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 
+-- Python Indentation Fix
+vim.g.python_indent = {
+  open_paren = "shiftwidth()",
+  nested_paran = "shiftwidth()",
+  continue = "shiftwidth()",
+  closed_paren_align_last_line = false,
+}

@@ -2,6 +2,7 @@ return {
   {
     "OXY2DEV/markview.nvim",
     ft = { "markdown" },
+    dependencies = { "latex-lsp/tree-sitter-latex"},
     config = function()
       vim.opt.conceallevel = 2
       vim.opt.concealcursor = "nc"

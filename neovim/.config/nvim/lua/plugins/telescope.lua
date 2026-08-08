@@ -1,34 +1,45 @@
 return {
   "nvim-telescope/telescope.nvim",
+  version = "*",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope-live-grep-args.nvim"
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   config = function()
     local telescope = require("telescope")
-    local builtin = require("telescope.builtin")
 
-    telescope.setup({
+    telescope.setup{
       defaults = {
+        layout_strategy = "vertical",
         layout_config = {
-          horizontal = { preview_width = 0.6 },
+          height = 0.95,
+          width = 0.95,
+          preview_height = 0.65,
+          -- prompt_position = "bottom",
         },
+        border = true,
+        prompt_prefix = "NIGGA> ",
       },
       pickers = {
         find_files = {
           hidden = true,
-        },
+        }
       },
-    })
+    }
 
-    telescope.load_extension("live_grep_args")
-    telescope.load_extension("yank_history")
+    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#141218", bg = "#B69DF8" })
+    vim.api.nvim_set_hl(0, "TelescopePreviewLine", { bg = "#B69DF8", bold = true })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#B69DF8", bg = "#141218" })
+    vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = "#B69DF8", bg = "#141218" })
+    vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { fg = "#B69DF8", bg = "#141218" })
+    vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { fg = "#B69DF8", bg = "#141218" })
 
-    -- Keymaps
-    local map = vim.keymap.set
-
-    map("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
-    map("n", "<leader>fg", telescope.extensions.live_grep_args.live_grep_args, { desc = "Live Grep" })
-    map("n", "<leader>fb", builtin.buffers, { desc = "File Buffers" })
-  end
+    local builtin = require("telescope.builtin")
+    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
+    vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffer" })
+    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help Tags" })
+    vim.keymap.set("n", "<leader>ch", builtin.command_history, { desc = "View Command History" })
+    vim.keymap.set("n", "<leader>fs", builtin.grep_string, { desc = "Find String Under Cursor" })
+  end,
 }

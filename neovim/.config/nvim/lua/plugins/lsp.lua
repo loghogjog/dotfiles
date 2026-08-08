@@ -4,12 +4,12 @@ return {
     config = function()
       -- Setup servers (modern API)
       vim.lsp.config("lua_ls", {})
-      vim.lsp.config("pyright", {})
+      vim.lsp.config("ty", {})
       vim.lsp.config("ts_ls", {})
 
       -- Enable them
       vim.lsp.enable("lua_ls")
-      vim.lsp.enable("pyright")
+      vim.lsp.enable("ty")
       vim.lsp.enable("ts_ls")
 
       -- Keymaps on attach
@@ -34,7 +34,7 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       vim.lsp.config("lua_ls", { capabilities = capabilities })
-      vim.lsp.config("pyright", { 
+      vim.lsp.config("ty", { 
         capabilities = capabilities,
         settings = {
           python = {
