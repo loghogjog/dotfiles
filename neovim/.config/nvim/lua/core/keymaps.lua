@@ -68,10 +68,6 @@ vim.keymap.set("n", "<leader>B", function()
   require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, { desc = "Set Breakpoint with Condition" })
 
--- Open REPL for debugging (Lowkey can remove alr since DAP UI is added)
-vim.keymap.set("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "Open Debug REPL" })
-vim.keymap.set("n", "<leader>dl", function() require("dap").run_last() end, { desc = "Run Last Debug Configuration" })
-
 -- Split Pane, Navigation g
 vim.keymap.set("n", "<leader>|", ":vsplit | wincmd l<CR>", { desc = "Vertical split" })
 vim.keymap.set("n", "<leader>-", ":split | wincmd j<CR>", { desc = "Horizontal split" }) -- add "| wincmd j to auto move to lower window"

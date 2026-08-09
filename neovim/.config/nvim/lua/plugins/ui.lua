@@ -24,7 +24,6 @@ return {
         lualine_b = {},
 
         lualine_c = {
-          {"🕑"},
           {
             function()
               return os.date("%a %d %b %H:%M")

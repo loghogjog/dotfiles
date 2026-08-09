@@ -5,8 +5,11 @@ nvim/undo/
 
 # envs
 .env/
-venv/
+.venv/
 mynvimenv/
 
 # OS
 .DS_Store
+
+#dms
+dms.lua

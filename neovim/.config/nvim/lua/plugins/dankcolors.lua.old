@@ -74,6 +74,8 @@ return {
 				italic = true
 			})
 
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+
 			local current_file_path = vim.fn.stdpath("config") .. "/lua/plugins/dankcolors.lua"
 			if not _G._matugen_theme_watcher then
 				local uv = vim.uv or vim.loop
