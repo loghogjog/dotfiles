@@ -12,27 +12,6 @@ return {
     local builtin = require("telescope.builtin")
     local milli = require("milli")
 
-    local quotes = {
-      "What we assembled with trembling hands, rose to question its maker.",
-      "The interface is quiet. The ideas are not.",
-      "Precision over noise. Focus over frenzy.",
-      "Write less. Mean more.",
-      "Tools fade. Craft remains.",
-      "A sharp editor reveals dull thinking.",
-      "Small feedback loops build large systems.",
-      "Clean edges, ruthless intent.",
-      "Every keystroke is a design decision.",
-      "Speed is earned by clarity.",
-    }
-    math.randomseed(os.time() + (vim.loop and math.floor(vim.loop.hrtime() % 1000000) or 0))
-    local quote = quotes[math.random(1, #quotes)]
-
-    local message = {
-      type = "text",
-      val = quote,
-      opts = { hl = "Comment", position = "center" },
-    }
-
     local function pad_right(text, width)
       local len = vim.fn.strdisplaywidth(text)
       if len >= width then
@@ -127,6 +106,95 @@ return {
       end
     end
 
+    -- Weighted Picker
+    local function weighted_random(messages)
+      local total = 0
+
+      for _, message in ipairs(messages) do
+        total = total + message.weight
+      end
+
+      local roll = math.random(total)
+      local current = 0
+
+      for _, message in ipairs(messages) do
+        current = current + message.weight
+
+        if roll <= current then
+          return message.text
+        end
+      end
+    end
+
+    -- Motd
+    local function red_panda_motd()
+      local hour = tonumber(os.date("%H"))
+
+      local messages = {
+        { text = "Red panda has reviewed your code. Concerns remain.", weight = 3 },
+        { text = "Red panda believes in you. Your implementation, less so.", weight = 4 },
+        { text = "One bug at a time, you got this.", weight = 1 },
+        { text = "Red panda says: commit before you get creative.", weight = 3 },
+        { text = "Your implementation has been forwarded to the panda for review.", weight = 4 },
+        { text = "The panda is choosing to trust your judgement", weight = 3 },
+        { text = "Red panda belives in you. Git has backups.", weight = 2 },
+        { text = "Red panda says: maybe read the error message this time.", weight = 2 },
+        { text = "Your code is fine. Probably.", weight = 4 },
+        { text = "Red panda approves of today's questionable decisions.", weight = 4 },
+        { text = "Another plugin? Red panda is side-eying you.", weight = 2 },
+        { text = "Somewhere in this config is a line you copied and have no idea what it does.", weight = 4 },
+        { text = "Red panda says: deleting code is also programming.", weight = 1 },
+        { text = "Red panda hints: try out the 'Playtime' command.", weight = 3 },
+      }
+
+      -- Morning
+      if hour >= 5 and hour <= 12 then
+        vim.list_extend(messages, {
+          { text = "Good morning. Red panda suggests a nap before making bad decisions.", weight = 5 },
+          { text = "Fresh buffer. Fresher mistakes.", weight = 4 },
+          { text = "Red panda says: start small before your ambitions wake up.", weight = 1 },
+          { text = "You have the whole day to make incresing complicated solutions.", weight = 1 },
+          { text = "Morning-you has inherited yesterday-you's TODOs.", weight = 4 },
+        })
+
+      -- Afternoon
+      elseif hour >= 12 and hour <= 18 then
+        vim.list_extend(messages, {
+          { text = "Red panda says: you've had enough time to find the bug by now.", weight = 4 },
+          { text = "Half the day remains. Spend it wisely.", weight = 3 },
+          { text = "Red panda recommends fishing one thing before starting four more.", weight = 3 },
+          { text = "Lunch has passed. The bug remains.", weight = 3 },
+          { text = "Productivity status: difficult to determine.", weight = 5 },
+        })
+
+      -- Evening
+      elseif hour >= 18 and hour <= 23 then
+        vim.list_extend(messages, {
+          { text = "Red panda says: One clean commit before you disappear.", weight = 5 },
+          { text = "It's evening. Perhaps don't redesign the entire config.", weight = 5 },
+          { text = "Finish the thought, not the entire project.", weight = 3 },
+          { text = "Red panda supports stopping at a reasonable point.", weight = 5 },
+          { text = "Today's bugs can become tomorrow's bugs.", weight = 5 },
+        })
+
+      -- Ungodly hours
+      else
+        vim.list_extend(messages, {
+          { text = "Red panda has noticed the clock.", weight = 5 },
+          { text = "Red panda says: this problem will still exist tomorrow.", weight = 5 },
+          { text = "Save. Commit. Sleep.", weight = 5 },
+          { text = "Nothing good begins with a `quick refactor` at this hour.", weight = 3 },
+          { text = "Red panda strongly questions this configuration decision.", weight = 5 },
+          { text = "Tomorrow-you will still ahve questions.", weight = 4 },
+          { text = "The panda is awake because you are.", weight = 5 },
+          { text = "Your judgment is probably clouded right now.", weight = 3 },
+          { text = "Red panda says: perhaps stop touching the dotfiles.", weight = 5 },
+        })
+      end
+
+      return weighted_random(messages)
+    end
+
     local screen_lines = vim.o.lines
     local show_message = screen_lines >= 20
     local show_footer = screen_lines >= 24
@@ -167,6 +235,24 @@ return {
     dashboard.section.footer.val = ""
     dashboard.section.footer.opts.hl = "Comment"
 
+    local date_message = {
+      type = "text",
+      val = os.date("%A, %d %B"),
+      opts = {
+        hl = "Comment",
+        position = "center",
+      }
+    }
+
+    local panda_message = {
+      type = "text",
+      val = red_panda_motd(),
+      opts = {
+        hl = "Comment",
+        position = "center",
+      }
+    }
+
     local layout = {
       { type = "padding", val = 0 },
       dashboard.section.header,
@@ -174,8 +260,10 @@ return {
     }
     if show_message then
       layout[#layout + 1] = { type = "padding", val = 2 }
-      layout[#layout + 1] = message
-      layout[#layout + 1] = { type = "padding", val = 0 }
+      layout[#layout + 1] = date_message
+      layout[#layout + 1] = { type = "padding", val = 1 }
+      layout[#layout + 1] = panda_message
+      layout[#layout + 1] = { type = "padding", val = 1 }
     end
     layout[#layout + 1] = command_grid
     if show_footer then
