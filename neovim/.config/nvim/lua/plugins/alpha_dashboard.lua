@@ -150,7 +150,7 @@ return {
       -- Morning
       if hour >= 5 and hour <= 12 then
         vim.list_extend(messages, {
-          { text = "Good morning. Red panda suggests a nap before making bad decisions.", weight = 5 },
+          { text = "Good morning. Red panda suggests a nap before making bad decisions.", weight = 6 },
           { text = "Fresh buffer. Fresher mistakes.", weight = 4 },
           { text = "Red panda says: start small before your ambitions wake up.", weight = 1 },
           { text = "You have the whole day to make incresing complicated solutions.", weight = 1 },
@@ -164,31 +164,31 @@ return {
           { text = "Half the day remains. Spend it wisely.", weight = 3 },
           { text = "Red panda recommends fishing one thing before starting four more.", weight = 3 },
           { text = "Lunch has passed. The bug remains.", weight = 3 },
-          { text = "Productivity status: difficult to determine.", weight = 5 },
+          { text = "Productivity status: difficult to determine.", weight = 6 },
         })
 
       -- Evening
       elseif hour >= 18 and hour <= 23 then
         vim.list_extend(messages, {
-          { text = "Red panda says: One clean commit before you disappear.", weight = 5 },
+          { text = "Red panda says: One clean commit before you disappear.", weight = 6 },
           { text = "It's evening. Perhaps don't redesign the entire config.", weight = 5 },
           { text = "Finish the thought, not the entire project.", weight = 3 },
-          { text = "Red panda supports stopping at a reasonable point.", weight = 5 },
-          { text = "Today's bugs can become tomorrow's bugs.", weight = 5 },
+          { text = "Red panda supports stopping at a reasonable point.", weight = 6 },
+          { text = "Today's bugs can become tomorrow's bugs.", weight = 6 },
         })
 
       -- Ungodly hours
       else
         vim.list_extend(messages, {
-          { text = "Red panda has noticed the clock.", weight = 5 },
-          { text = "Red panda says: this problem will still exist tomorrow.", weight = 5 },
-          { text = "Save. Commit. Sleep.", weight = 5 },
+          { text = "Red panda has noticed the clock.", weight = 6 },
+          { text = "Red panda says: this problem will still exist tomorrow.", weight = 6 },
+          { text = "Save. Commit. Sleep.", weight = 6 },
           { text = "Nothing good begins with a `quick refactor` at this hour.", weight = 3 },
-          { text = "Red panda strongly questions this configuration decision.", weight = 5 },
+          { text = "Red panda strongly questions this configuration decision.", weight = 6 },
           { text = "Tomorrow-you will still ahve questions.", weight = 4 },
-          { text = "The panda is awake because you are.", weight = 5 },
+          { text = "The panda is awake because you are.", weight = 6 },
           { text = "Your judgment is probably clouded right now.", weight = 3 },
-          { text = "Red panda says: perhaps stop touching the dotfiles.", weight = 5 },
+          { text = "Red panda says: perhaps stop touching the dotfiles.", weight = 6 },
         })
       end
 
