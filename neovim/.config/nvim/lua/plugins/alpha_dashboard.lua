@@ -32,7 +32,7 @@ return {
         { type = "text", val = " ┌────────────────────────┬────────────────────────┐", opts = { position = "center", hl = "Comment" } },
         { type = "text", val = grid_line("[f] Find Files", "[r] Recent Files"), opts = { position = "center", hl = "Comment" } },
         { type = "text", val = grid_line("[g] Find Text", "[c] Config"), opts = { position = "center", hl = "Comment" } },
-        { type = "text", val = grid_line("[s] Restore Session", "[n] New File"), opts = { position = "center", hl = "Comment" } },
+        { type = "text", val = grid_line("[s] Restore Session", "[e] LazyGit"), opts = { position = "center", hl = "Comment" } },
         { type = "text", val = grid_line("[l] Lazy", "[q] Quit"), opts = { position = "center", hl = "Comment" } },
         { type = "text", val = " └────────────────────────┴────────────────────────┘", opts = { position = "center", hl = "Comment" } },
       },
@@ -44,8 +44,8 @@ return {
       local stats = ok_lazy and type(lazy.stats) == "function" and lazy.stats() or {}
       local version = vim.version()
       return string.format(
-        "%s  •  %d plugins  •  %.2fms  •  v%d.%d.%d",
-        os.date("%d-%m-%Y  %H:%M"),
+        "%d plugins  •  %.2fms  •  v%d.%d.%d", -- %s  •  
+        -- os.date("%d-%m-%Y  %H:%M"),
         stats.count or 0,
         tonumber(stats.startuptime) or 0,
         version.major,
@@ -237,7 +237,7 @@ return {
 
     local date_message = {
       type = "text",
-      val = os.date("%A, %d %B"),
+      val = os.date("%A, %d %B %H:%M"),
       opts = {
         hl = "Comment",
         position = "center",
@@ -293,7 +293,7 @@ return {
         "<cmd>lua if _G.restore_session_with_plugins then _G.restore_session_with_plugins() else require('persistence').load() end<CR>",
         opts
       )
-      vim.keymap.set("n", "n", "<cmd>ene <BAR> startinsert<CR>", opts)
+      vim.keymap.set("n", "e", "<cmd>LazyGit<CR>", opts)
       vim.keymap.set("n", "l", "<cmd>Lazy<CR>", opts)
       vim.keymap.set("n", "q", "<cmd>quit<CR>", opts)
     end
