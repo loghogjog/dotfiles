@@ -22,7 +22,7 @@ return {
       })
 
       vim.keymap.set("n", "<leader>cb", "<cmd>Checkbox toggle<CR>", { desc = "Toggle Checkbox" })
-      vim.keymap.set("n", "<leader>mp", "<cmd>Markview Toggle<CR>", { desc = "Toggle Markdown Preview" })
+      vim.keymap.set("n", "<leader>mt", "<cmd>Markview Toggle<CR>", { desc = "Toggle Markdown Preview" })
     end
   }
 }
