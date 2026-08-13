@@ -5,6 +5,15 @@ return {
     config = function()
       require("yt-player").setup({
         -- your configuration options here (see Configuration section)
+        statusline = {
+          format = "{icon} {title} - [{position}/{duration} {progress}]",
+        },
+        search = {
+          limit = 20,
+        },
+        notifications = {
+          notify_on_track_change = false,
+        },
       })
 
     -- Keymaps
